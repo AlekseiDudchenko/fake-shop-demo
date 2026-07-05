@@ -20,29 +20,33 @@
   header {
     background: #111;
     color: #fff;
-    padding: 14px 20px;
+    padding: 14px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
   }
   header .logo {
     font-weight: 800;
-    font-size: 20px;
+    font-size: clamp(15px, 5vw, 20px);
     letter-spacing: 0.5px;
+    white-space: nowrap;
   }
   header .logo span { color: var(--accent); }
   header .cart {
     background: #222;
-    padding: 8px 14px;
+    padding: 8px 12px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: clamp(11px, 3.2vw, 14px);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .banner {
     background: var(--accent);
     color: #fff;
     text-align: center;
-    padding: 6px;
-    font-size: 13px;
+    padding: 6px 10px;
+    font-size: clamp(11px, 3.2vw, 13px);
     font-weight: 600;
   }
   main {
