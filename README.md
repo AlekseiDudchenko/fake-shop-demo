@@ -1,22 +1,22 @@
-# Шуточный интернет-магазин (демо для видео)
+# Spaß-Onlineshop (Demo für Video)
 
-Статичная HTML-страница «карточка товара» — для съёмки шуточного ролика в Instagram.
-Никакой логики, никакого бэкенда — просто красивая страница, которую можно открыть в браузере и заскринкастить.
+Eine statische HTML-Seite „Produktkarte" — für die Aufnahme eines lustigen Instagram-Videos.
+Keine Logik, kein Backend — nur eine schöne Seite, die man im Browser öffnen und aufnehmen kann.
 
-## Как настроить под себя
+## So passt du sie an
 
-1. **Фото товара** — положите картинку рядом с `index.html` и назовите её `product.jpg`
-   (если хотите другое имя/формат — поправьте `src="product.jpg"` в `index.html`, строка с `<img>`).
-2. **Название товара** — замените текст `Название вашего товара` (тег `<h1 class="title">`).
-3. **Цена** — замените `4 999 ₽` (старая, перечёркнутая) и `1 990 ₽` (новая) в блоке `.price-row`.
-4. **Описание** — замените текст внутри `<p class="desc">`.
+1. **Produktfoto** — Datei neben `index.html` ablegen und `product.jpg` nennen
+   (anderer Name/Format? Dann `src="product.jpg"` im `<img>`-Tag in `index.html` anpassen).
+2. **Produktname** — Text `Coole Kaffeetasse` ersetzen (Tag `<h1 class="title">`).
+3. **Preis** — `14,99 €` (alt, durchgestrichen) und `6,99 €` (neu) im `.price-row`-Block ersetzen.
+4. **Beschreibung** — Text innerhalb von `<p class="desc">` ersetzen.
 
-## Как открыть
+## Öffnen
 
-Просто дважды кликните на `index.html` — откроется в браузере. Никакой сборки/сервера не нужно.
+Einfach doppelt auf `index.html` klicken — öffnet sich im Browser. Kein Build/Server nötig.
 
-## Публикация (по желанию)
+## Veröffentlichen (optional)
 
-Если нужна ссылка для сторис — включите GitHub Pages в настройках репозитория
-(Settings → Pages → Source: `main` / root), и страница станет доступна по адресу вида
+Für einen Link für Stories: GitHub Pages in den Repo-Einstellungen aktivieren
+(Settings → Pages → Source: `main` / root). Die Seite ist dann erreichbar unter
 `https://<username>.github.io/fake-shop-demo/`.

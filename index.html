@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>МЕГА МАРКЕТ — товар дня!</title>
+<title>MEGA MARKT — Angebot des Tages!</title>
 <style>
   :root {
     --accent: #ff3b30;
@@ -71,9 +71,9 @@
     border-radius: 6px;
     z-index: 2;
   }
-  /* ====== ФОТО ТОВАРА ======
-     Замените файл product.jpg на фото своего товара
-     (просто положите файл с таким же именем в эту же папку).
+  /* ====== PRODUKTFOTO ======
+     Ersetzen Sie die Datei product.jpg durch ein Foto Ihres Produkts
+     (einfach eine Datei mit demselben Namen in diesen Ordner legen).
   */
   .photo-wrap {
     width: 100%;
@@ -115,8 +115,8 @@
   }
   .stars span { color: #999; margin-left: 6px; font-size: 13px; }
 
-  /* ====== ЦЕНА ======
-     Меняйте значения ниже — старую (перечёркнутую) и новую цену.
+  /* ====== PREIS ======
+     Ändern Sie unten die Werte — alter (durchgestrichener) und neuer Preis.
   */
   .price-row {
     display: flex;
@@ -179,51 +179,52 @@
 <body>
 
 <header>
-  <div class="logo">МЕГА<span>МАРКЕТ</span></div>
-  <div class="cart">🛒 Корзина (0)</div>
+  <div class="logo">MEGA<span>MARKT</span></div>
+  <div class="cart">🛒 Warenkorb (0)</div>
 </header>
-<div class="banner">🔥 ТОЛЬКО СЕГОДНЯ СКИДКА — УСПЕЙ КУПИТЬ 🔥</div>
+<div class="banner">🔥 NUR HEUTE RABATT — JETZT ZUSCHLAGEN 🔥</div>
 
 <main>
   <div class="card">
     <div class="badge">
-      <span class="tag">ХИТ ПРОДАЖ</span>
+      <span class="tag">BESTSELLER</span>
       <div class="photo-wrap">
-        <!-- ЗАМЕНИТЕ ФОТО: положите файл product.jpg рядом с index.html -->
-        <img src="product.jpg" alt="Товар" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <!-- FOTO ERSETZEN: Datei product.jpg neben index.html ablegen -->
+        <img src="product.jpg" alt="Tasse" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="photo-placeholder">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Сюда добавьте product.jpg<br>(фото вашего товара)</span>
+          <span>Hier product.jpg ablegen<br>(Foto Ihrer Tasse)</span>
         </div>
       </div>
     </div>
 
     <div class="info">
-      <!-- НАЗВАНИЕ ТОВАРА -->
-      <h1 class="title">Название вашего товара</h1>
-      <div class="stars">★★★★★ <span>128 отзывов</span></div>
+      <!-- PRODUKTNAME -->
+      <h1 class="title">Coole Kaffeetasse</h1>
+      <div class="stars">★★★★★ <span>128 Bewertungen</span></div>
 
-      <!-- ЦЕНА: поменяйте цифры ниже -->
+      <!-- PREIS: Zahlen unten anpassen -->
       <div class="price-row">
-        <span class="price-old">4 999 ₽</span>
-        <span class="price-new">1 990 ₽</span>
+        <span class="price-old">14,99 €</span>
+        <span class="price-new">6,99 €</span>
       </div>
-      <div class="price-sub">Бесплатная доставка • Осталось 3 шт.</div>
+      <div class="price-sub">Kostenloser Versand • Nur noch 3 Stück verfügbar</div>
 
       <p class="desc">
-        Впишите сюда короткое описание товара: пару предложений о том,
-        почему его срочно надо купить. Можно с юмором — это же шутка для инсты 😄
+        Hier kommt eine kurze Produktbeschreibung hin: ein paar Sätze,
+        warum man diese Tasse unbedingt sofort kaufen muss. Gerne mit Humor —
+        ist ja nur ein Spaß für Insta 😄
       </p>
 
-      <button class="buy-btn" onclick="alert('Спасибо за заказ! 🎉\n\nШутка — это демо-страница для видео 😉')">
-        Купить сейчас
+      <button class="buy-btn" onclick="alert('Danke für Ihre Bestellung! 🎉\n\nSpaß beiseite — das ist nur eine Demo-Seite für ein Video 😉')">
+        Jetzt kaufen
       </button>
-      <div class="fine-print">Оплата при получении • Возврат 14 дней</div>
+      <div class="fine-print">Zahlung bei Lieferung • 14 Tage Rückgaberecht</div>
     </div>
   </div>
 </main>
 
-<footer>© МЕГАМАРКЕТ — шуточная демо-страница, не настоящий магазин</footer>
+<footer>© MEGA MARKT — Spaß-Demo-Seite, kein echter Shop</footer>
 
 </body>
 </html>
