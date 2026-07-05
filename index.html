@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МЕГА МАРКЕТ — товар дня!</title>
+<style>
+  :root {
+    --accent: #ff3b30;
+    --accent-dark: #d9291f;
+    --bg: #f4f4f7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: #1a1a1a;
+  }
+  header {
+    background: #111;
+    color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header .logo {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+  header .logo span { color: var(--accent); }
+  header .cart {
+    background: #222;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  .banner {
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    padding: 6px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  main {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .badge {
+    position: relative;
+  }
+  .badge .tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 6px;
+    z-index: 2;
+  }
+  /* ====== ФОТО ТОВАРА ======
+     Замените файл product.jpg на фото своего товара
+     (просто положите файл с таким же именем в эту же папку).
+  */
+  .photo-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-placeholder {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+  }
+  .photo-placeholder svg { width: 48px; height: 48px; opacity: 0.5; }
+
+  .info { padding: 18px 18px 22px; }
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .stars {
+    color: #ffb400;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .stars span { color: #999; margin-left: 6px; font-size: 13px; }
+
+  /* ====== ЦЕНА ======
+     Меняйте значения ниже — старую (перечёркнутую) и новую цену.
+  */
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .price-old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 16px;
+  }
+  .price-new {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--accent-dark);
+  }
+  .price-sub {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 16px;
+  }
+
+  .desc {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .buy-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.2s ease;
+  }
+  .buy-btn:active { transform: scale(0.98); background: var(--accent-dark); }
+
+  .fine-print {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">МЕГА<span>МАРКЕТ</span></div>
+  <div class="cart">🛒 Корзина (0)</div>
+</header>
+<div class="banner">🔥 ТОЛЬКО СЕГОДНЯ СКИДКА — УСПЕЙ КУПИТЬ 🔥</div>
+
+<main>
+  <div class="card">
+    <div class="badge">
+      <span class="tag">ХИТ ПРОДАЖ</span>
+      <div class="photo-wrap">
+        <!-- ЗАМЕНИТЕ ФОТО: положите файл product.jpg рядом с index.html -->
+        <img src="product.jpg" alt="Товар" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Сюда добавьте product.jpg<br>(фото вашего товара)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <!-- НАЗВАНИЕ ТОВАРА -->
+      <h1 class="title">Название вашего товара</h1>
+      <div class="stars">★★★★★ <span>128 отзывов</span></div>
+
+      <!-- ЦЕНА: поменяйте цифры ниже -->
+      <div class="price-row">
+        <span class="price-old">4 999 ₽</span>
+        <span class="price-new">1 990 ₽</span>
+      </div>
+      <div class="price-sub">Бесплатная доставка • Осталось 3 шт.</div>
+
+      <p class="desc">
+        Впишите сюда короткое описание товара: пару предложений о том,
+        почему его срочно надо купить. Можно с юмором — это же шутка для инсты 😄
+      </p>
+
+      <button class="buy-btn" onclick="alert('Спасибо за заказ! 🎉\n\nШутка — это демо-страница для видео 😉')">
+        Купить сейчас
+      </button>
+      <div class="fine-print">Оплата при получении • Возврат 14 дней</div>
+    </div>
+  </div>
+</main>
+
+<footer>© МЕГАМАРКЕТ — шуточная демо-страница, не настоящий магазин</footer>
+
+</body>
+</html>
