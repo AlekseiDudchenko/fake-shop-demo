@@ -175,6 +175,44 @@
     color: #aaa;
     padding: 20px;
   }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #1c1f26;
+    color: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 340px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+  .modal-box p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    white-space: pre-line;
+  }
+  .modal-ok {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
@@ -217,13 +255,24 @@
         ist ja nur ein Spaß für Insta 😄
       </p>
 
-      <button class="buy-btn" onclick="alert('Herzlichen Glückwunsch! 🎉\n\nSie haben soeben die nachhaltige Tasse für 99,00 € gekauft.\n\nLieferzeit: bis zu 9 Monate.')">
+      <button class="buy-btn" onclick="document.getElementById('orderModal').classList.add('open')">
         Jetzt kaufen
       </button>
       <div class="fine-print">Zahlung bei Lieferung • 14 Tage Rückgaberecht</div>
     </div>
   </div>
 </main>
+
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-box">
+    <p>Herzlichen Glückwunsch! 🎉
+
+Sie haben soeben die nachhaltige Tasse für 99,00 € gekauft.
+
+Lieferzeit: bis zu 9 Monate.</p>
+    <button class="modal-ok" onclick="document.getElementById('orderModal').classList.remove('open')">OK</button>
+  </div>
+</div>
 
 <footer>© SCHROTT MARKT — Spaß-Demo-Seite, kein echter Shop</footer>
 
