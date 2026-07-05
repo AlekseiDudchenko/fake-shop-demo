@@ -63,17 +63,31 @@
   .badge {
     position: relative;
   }
-  .badge .tag {
+  .badge .tags {
     position: absolute;
     top: 12px;
     left: 12px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .badge .tag {
     background: var(--accent);
     color: #fff;
     font-size: 12px;
     font-weight: 700;
     padding: 5px 10px;
     border-radius: 6px;
-    z-index: 2;
+  }
+  .badge .tag.urgent {
+    background: #111;
+    animation: pulse 1.1s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
   }
   /* ====== PRODUKTFOTO ======
      Ersetzen Sie die Datei product.jpg durch ein Foto Ihres Produkts
@@ -225,12 +239,15 @@
   <div class="logo">SCHROTT<span>MARKT</span></div>
   <div class="cart">🛒 Warenkorb (0)</div>
 </header>
-<div class="banner">🔥 NUR HEUTE RABATT — JETZT ZUSCHLAGEN 🔥</div>
+<div class="banner">🔥 NUR HEUTE RABATT — Angebot endet in <span id="countdown">15s</span> 🔥</div>
 
 <main>
   <div class="card">
     <div class="badge">
-      <span class="tag">BESTSELLER</span>
+      <div class="tags">
+        <span class="tag">BESTSELLER</span>
+        <span class="tag urgent">NUR NOCH 1 STÜCK!</span>
+      </div>
       <div class="photo-wrap">
         <!-- FOTO ERSETZEN: Datei product.jpg neben index.html ablegen -->
         <img src="product.jpg" alt="Tasse" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -251,12 +268,15 @@
         <span class="price-old">999.999,99 €</span>
         <span class="price-new">99,00 €</span>
       </div>
-      <div class="price-sub">Kostenloser Versand • Nur noch 3 Stück verfügbar</div>
+      <div class="price-sub">Kostenloser Versand • Nur noch 1 Stück verfügbar!</div>
 
       <p class="desc">
-        Hier kommt eine kurze Produktbeschreibung hin: ein paar Sätze,
-        warum man diese Tasse unbedingt sofort kaufen muss. Gerne mit Humor —
-        ist ja nur ein Spaß für Insta 😄
+        Diese Tasse ist ein absolutes Gamechanger-Statement-Piece für deine
+        gesamte Morning-Routine. Handcrafted Premium-Ceramic-Design trifft auf
+        next-level Nachhaltigkeits-Ästhetik — 100% organic vibes, zero
+        Kompromisse. Ein Limited-Edition-Unikat, das dein Lifestyle-Game auf
+        ein neues Level hebt und jeden Kaffee zum Luxus-Ritual macht. Not just
+        a mug — it's an experience. 🚀✨
       </p>
 
       <button class="buy-btn" onclick="document.getElementById('orderModal').classList.add('open')">
@@ -279,6 +299,24 @@ Lieferzeit: bis zu 9 Monate.</p>
 </div>
 
 <footer>© SCHROTT MARKT — Spaß-Demo-Seite, kein echter Shop</footer>
+
+<script>
+  (function () {
+    var secondsLeft = 15;
+    var el = document.getElementById('countdown');
+    function tick() {
+      el.textContent = secondsLeft + 's';
+      if (secondsLeft <= 0) {
+        el.textContent = 'gleich vorbei!';
+        clearInterval(timer);
+        return;
+      }
+      secondsLeft--;
+    }
+    tick();
+    var timer = setInterval(tick, 1000);
+  })();
+</script>
 
 </body>
 </html>
