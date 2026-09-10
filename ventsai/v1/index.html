@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВентСай — вариант 1 (инженерный)</title>
+<meta name="description" content="ВентСай — изготовление и монтаж вентиляции в Томске и области: воздуховоды, фасонные изделия, приточно-вытяжные системы, дымоудаление.">
+<style>
+  :root{--c:#00b3a4;--c-d:#008d81;--bg:#0b1418;--panel:#111e24;--line:#1e3038;--muted:#7d97a1}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:#e8f2f5;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+  .mono{font-family:ui-monospace,"SF Mono",Consolas,monospace}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+  .switch{background:#050c0f;color:#4d6670;font-size:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .switch .wrap{display:flex;gap:14px;flex-wrap:wrap}
+  .switch a{color:#4d6670;text-decoration:none}
+  .switch a:hover,.switch a.on{color:var(--c)}
+  header{border-bottom:1px solid var(--line);padding:16px 0;position:sticky;top:0;background:rgba(11,20,24,.95);z-index:20;backdrop-filter:blur(6px)}
+  .hrow{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-weight:800;font-size:21px;letter-spacing:.5px}
+  .logo span{color:var(--c)}
+  .logo small{display:block;font-size:10px;letter-spacing:1.6px;color:var(--muted);font-weight:400;text-transform:uppercase}
+  nav{display:flex;gap:18px;font-size:14px;flex-wrap:wrap}
+  nav a{color:#a8c0c8;text-decoration:none}
+  nav a:hover{color:var(--c)}
+  .tel{text-decoration:none;color:#fff;font-weight:700;font-size:17px;white-space:nowrap}
+  .tel small{display:block;font-size:11px;color:var(--muted);font-weight:400}
+  .hero{padding:56px 0;border-bottom:1px solid var(--line);background:
+    radial-gradient(600px 300px at 80% 0,rgba(0,179,164,.12),transparent 70%)}
+  h1{font-size:clamp(28px,6vw,50px);line-height:1.08;margin:0 0 18px;max-width:780px;letter-spacing:-1px}
+  h1 span{color:var(--c)}
+  .lead{color:var(--muted);font-size:17px;max-width:600px;margin:0 0 28px}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+  .btn{display:inline-block;text-decoration:none;padding:15px 28px;border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;border:1px solid var(--c)}
+  .btn.p{background:var(--c);color:#04191b}
+  .btn.o{background:transparent;color:var(--c)}
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .flow div{padding:16px 18px;border-right:1px solid var(--line);background:var(--panel)}
+  .flow b{display:block;font-size:22px;color:var(--c)}
+  .flow span{font-size:12px;color:var(--muted)}
+  section{padding:52px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:clamp(21px,4vw,30px);margin:0 0 8px}
+  .tag{font-size:11px;letter-spacing:2px;color:var(--c);text-transform:uppercase;margin-bottom:8px}
+  .sub{color:var(--muted);margin:0 0 30px;max-width:640px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .c{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+  .c h3{margin:0 0 8px;font-size:17px}
+  .c p{margin:0 0 14px;font-size:14px;color:var(--muted)}
+  .c .from{font-size:14px;font-weight:700;color:var(--c);border-top:1px solid var(--line);padding-top:12px}
+  .steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));counter-reset:s}
+  .st{border-top:2px solid var(--c);padding-top:14px}
+  .st::before{counter-increment:s;content:"ЭТАП 0" counter(s);display:block;font-size:11px;letter-spacing:1.4px;color:var(--c);margin-bottom:6px}
+  .st h4{margin:0 0 6px;font-size:15px}
+  .st p{margin:0;font-size:14px;color:var(--muted)}
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{background:#0d1a1f;color:var(--c);font-size:11px;letter-spacing:1.2px;text-transform:uppercase}
+  tr:last-child td{border-bottom:none}
+  td:last-child{font-weight:700;color:var(--c)}
+  .note{font-size:13px;color:var(--muted);margin-top:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+  .chips li{border:1px solid var(--line);border-radius:6px;padding:8px 14px;font-size:14px;color:#a8c0c8;background:var(--panel)}
+  .revs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .rev{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--c);border-radius:10px;padding:20px;font-size:14px}
+  .rev p{margin:0 0 12px;color:#c6d8de}
+  .rev span{font-size:13px;color:var(--muted)}
+  .rev span b{display:block;color:#fff}
+  .cgrid{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  form{display:grid;gap:11px}
+  input,select,textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:#fff;font:inherit;font-size:15px}
+  input::placeholder,textarea::placeholder{color:#5d757e}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--c)}
+  select option{color:#111}
+  textarea{min-height:86px;resize:vertical}
+  .cinfo div{margin-bottom:14px;font-size:15px}
+  .cinfo b{display:block;font-size:11px;color:var(--muted);font-weight:400;text-transform:uppercase;letter-spacing:1px}
+  .cinfo a{color:var(--c);text-decoration:none}
+  footer{padding:22px 0;font-size:13px;color:var(--muted)}
+  .ok{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:20px;z-index:30}
+  .ok.open{display:flex}
+  .ok>div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px;max-width:340px;text-align:center}
+  .ok h3{margin:0 0 8px}.ok p{color:var(--muted);font-size:14px;margin:0 0 18px}
+  .ok .btn{width:100%}
+  @media(max-width:760px){nav{display:none}}
+</style>
+</head>
+<body>
+
+<div class="switch"><div class="wrap">
+  <span>ВентСай, варианты:</span>
+  <a class="on" href="../v1/">v1</a><a href="../v2/">v2</a><a href="../v3/">v3</a>
+  <a href="../../" style="margin-left:auto">← СК Идеал</a>
+</div></div>
+
+<header><div class="wrap hrow">
+  <div class="logo">ВЕНТ<span>САЙ</span><small>Вентиляция • Томск</small></div>
+  <nav>
+    <a href="#services">Услуги</a><a href="#steps">Как работаем</a><a href="#prices">Цены</a>
+    <a href="#objects">Объекты</a><a href="#contact">Контакты</a>
+  </nav>
+  <a class="tel" href="tel:+79138521610">+7 (913) 852-16-10<small>Пн–Пт 9:00–18:00</small></a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <h1>Изготовление и монтаж <span>вентиляции</span> в Томске и области</h1>
+  <p class="lead">Собственный цех по производству воздуховодов и фасонных изделий. Проектируем, изготавливаем, монтируем и запускаем приточно-вытяжные системы под ключ — от кафе до производственного цеха.</p>
+  <div class="btns">
+    <a class="btn p" href="#contact">Рассчитать систему</a>
+    <a class="btn o" href="tel:+79138521610">Позвонить инженеру</a>
+  </div>
+  <div class="flow">
+    <div><b>15 лет</b><span>на рынке вентиляции</span></div>
+    <div><b>900+</b><span>смонтированных систем</span></div>
+    <div><b>от 2 дней</b><span>срок изготовления</span></div>
+    <div><b>3 года</b><span>гарантия на монтаж</span></div>
+  </div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <div class="tag">Услуги</div>
+  <h2>Что мы делаем</h2>
+  <p class="sub">Полный цикл в одних руках: проект, цех, монтажная бригада, пусконаладка и сервис. Можно заказать только изготовление или только монтаж.</p>
+  <div class="grid">
+    <div class="c"><h3>Изготовление воздуховодов</h3><p>Прямоугольные и круглые, оцинковка 0,5–1,0 мм, нержавейка, чёрная сталь. Класс герметичности A, B, C.</p><div class="from">от 1 250 ₽ / м²</div></div>
+    <div class="c"><h3>Фасонные изделия</h3><p>Отводы, переходы, тройники, врезки, зонты, дефлекторы, дроссель-клапаны по вашим чертежам.</p><div class="from">от 1 900 ₽ / м²</div></div>
+    <div class="c"><h3>Монтаж систем</h3><p>Приточно-вытяжная вентиляция, монтаж установок, шумоглушителей, диффузоров и решёток.</p><div class="from">от 750 ₽ / м²</div></div>
+    <div class="c"><h3>Вентиляция общепита</h3><p>Кухонные зонты из нержавейки, жироулавливающие фильтры, вытяжка от печей и мангалов.</p><div class="from">от 12 000 ₽ / зонт</div></div>
+    <div class="c"><h3>Промышленная вентиляция</h3><p>Аспирация цехов, местные отсосы, вытяжка от сварочных постов и покрасочных камер.</p><div class="from">от 95 000 ₽ / объект</div></div>
+    <div class="c"><h3>Дымоудаление</h3><p>Системы противодымной защиты, огнезадерживающие клапаны, сдача инспектору.</p><div class="from">от 140 000 ₽ / объект</div></div>
+  </div>
+</div></section>
+
+<section id="steps"><div class="wrap">
+  <div class="tag">Процесс</div>
+  <h2>Как проходит работа</h2>
+  <p class="sub">От замера до подписанного акта пусконаладки — с фиксированной сметой.</p>
+  <div class="steps">
+    <div class="st"><h4>Замер и расчёт</h4><p>Выезд инженера на объект, замеры, расчёт воздухообмена по площади и назначению помещений.</p></div>
+    <div class="st"><h4>Проект и смета</h4><p>Схема раскладки, спецификация оборудования, фиксированная смета и сроки в договоре.</p></div>
+    <div class="st"><h4>Цех</h4><p>Изготовление воздуховодов и фасонных изделий на своём оборудовании — от 2 рабочих дней.</p></div>
+    <div class="st"><h4>Монтаж и запуск</h4><p>Монтаж, балансировка, аэродинамические испытания, паспорт системы и гарантия 3 года.</p></div>
+  </div>
+</div></section>
+
+<section id="prices"><div class="wrap">
+  <div class="tag">Прайс</div>
+  <h2>Ориентировочные цены</h2>
+  <p class="sub">Итоговая стоимость зависит от толщины металла, класса герметичности и сложности трассы.</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Позиция</th><th>Единица</th><th>Цена от</th></tr></thead>
+    <tbody>
+      <tr><td>Воздуховод прямоугольный, оцинковка</td><td>м²</td><td>1 250 ₽</td></tr>
+      <tr><td>Воздуховод круглый, оцинковка</td><td>м. п.</td><td>480 ₽</td></tr>
+      <tr><td>Воздуховод из нержавеющей стали</td><td>м²</td><td>3 400 ₽</td></tr>
+      <tr><td>Фасонные изделия (отводы, переходы)</td><td>м²</td><td>1 900 ₽</td></tr>
+      <tr><td>Зонт вытяжной для кухни, нержавейка</td><td>шт.</td><td>12 000 ₽</td></tr>
+      <tr><td>Монтаж воздуховодов</td><td>м²</td><td>750 ₽</td></tr>
+      <tr><td>Монтаж приточной установки</td><td>шт.</td><td>18 000 ₽</td></tr>
+      <tr><td>Проектирование вентиляции</td><td>м² объекта</td><td>90 ₽</td></tr>
+      <tr><td>Пусконаладка и балансировка</td><td>система</td><td>15 000 ₽</td></tr>
+      <tr><td>Чистка и дезинфекция вентиляции</td><td>м. п.</td><td>350 ₽</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Цены указаны без стоимости оборудования и действуют для объектов в радиусе 100 км от Томска.</p>
+</div></section>
+
+<section id="objects"><div class="wrap">
+  <div class="tag">Объекты</div>
+  <h2>С чем работаем</h2>
+  <p class="sub">Томск, Северск и районы области: выезд в пределах 100 км — бесплатно, дальше — по договорённости.</p>
+  <ul class="chips">
+    <li>Кафе и рестораны</li><li>Магазины и ТЦ</li><li>Производственные цеха</li><li>Склады</li>
+    <li>Автосервисы</li><li>Офисы и бизнес-центры</li><li>Медцентры и лаборатории</li><li>Школы и детсады</li>
+    <li>Спорткомплексы</li><li>Коттеджи</li><li>Пищевые производства</li><li>Автомойки</li>
+  </ul>
+</div></section>
+
+<section id="reviews"><div class="wrap">
+  <div class="tag">Отзывы</div>
+  <h2>Что говорят заказчики</h2>
+  <p class="sub">Несколько объектов последних сезонов.</p>
+  <div class="revs">
+    <div class="rev"><p>«Делали вытяжку на кухню кафе на 120 посадочных мест. Зонты изготовили за три дня, смонтировали за выходные — заведение не закрывалось.»</p><span><b>Сергей П.</b>кафе, Томск</span></div>
+    <div class="rev"><p>«Приточно-вытяжная система в цехе 800 м². Сделали проект, согласовали, запустили. Аэродинамику замерили при мне, паспорт системы отдали сразу.»</p><span><b>Игорь Л.</b>производство, Северск</span></div>
+    <div class="rev"><p>«Заказывали только воздуховоды по своим чертежам — оцинковка, класс B. Всё сошлось по размерам, ничего не переделывали на месте.»</p><span><b>Ольга Н.</b>подрядчик, Томский район</span></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap cgrid">
+  <div>
+    <div class="tag">Контакты</div>
+    <h2>Оставьте заявку</h2>
+    <p class="sub">Пришлите площадь и назначение помещения — рассчитаем воздухообмен и пришлём смету.</p>
+    <div class="cinfo">
+      <div><b>Телефон</b><a href="tel:+79138521610">+7 (913) 852-16-10</a></div>
+      <div><b>Почта</b><a href="mailto:info@example.ru">info@example.ru</a></div>
+      <div><b>Цех и офис</b>г. Томск, ул. Промышленная, 1</div>
+      <div><b>Режим работы</b>Пн–Пт, 9:00–18:00</div>
+    </div>
+  </div>
+  <form onsubmit="return lead(event)">
+    <input type="text" placeholder="Ваше имя" required>
+    <input type="tel" placeholder="Телефон" required>
+    <select><option value="">Что нужно?</option><option>Изготовление воздуховодов</option><option>Монтаж системы</option><option>Вентиляция общепита</option><option>Промышленная вентиляция</option><option>Дымоудаление</option><option>Обслуживание и чистка</option></select>
+    <textarea placeholder="Объект: площадь, назначение, сроки"></textarea>
+    <button class="btn p" type="submit">Отправить заявку</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap">© 2026 ВентСай — изготовление и монтаж вентиляции в Томске и Томской области</div></footer>
+
+<div class="ok" id="ok"><div>
+  <h3>Заявка принята 👌</h3>
+  <p>Инженер перезвонит в рабочее время и уточнит параметры объекта.</p>
+  <button class="btn p" onclick="document.getElementById('ok').classList.remove('open')">Хорошо</button>
+</div></div>
+
+<script>
+  function lead(e){e.preventDefault();e.target.reset();document.getElementById('ok').classList.add('open');return false}
+</script>
+</body>
+</html>
