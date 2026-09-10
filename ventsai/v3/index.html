@@ -103,6 +103,8 @@
   .btns{display:flex;gap:12px;flex-wrap:wrap}
   .btn{display:inline-block;text-decoration:none;padding:14px 26px;font-size:15px;font-weight:700;cursor:pointer;border:2px solid var(--acc);background:var(--acc);color:#fff}
   .btn.o{background:transparent;color:var(--acc)}
+  .herolink{font-size:14px;color:var(--muted);margin:18px 0 0}
+  .herolink a{color:var(--acc)}
   .hero-r h3{margin:0 0 18px;font-size:15px;text-transform:uppercase;letter-spacing:1.4px;font-weight:600;color:#d7dde3}
   .hero-r ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
   .hero-r li{display:flex;gap:14px;align-items:baseline;font-size:15px;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:12px}
@@ -186,6 +188,49 @@
     background:var(--bg);color:var(--muted);font-size:13px}
   .gal figcaption{font-size:14px;color:var(--muted);padding-top:10px;line-height:1.5}
   .gal figcaption b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+
+  /* ---- Калькулятор ---- */
+  .calc{display:grid;gap:22px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  @media(max-width:820px){.calc{grid-template-columns:1fr}}
+  .calc fieldset{border:1px solid var(--line);background:#fff;padding:18px 20px 20px;margin:0}
+  .calc legend{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--acc);font-weight:700;padding:0 6px}
+  .calc label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px}
+  .calc .row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:14px}
+  .calc .row:last-of-type{margin-bottom:0}
+  .calc .row[hidden]{display:none}
+  .calc input,.calc select{padding:11px 12px}
+  .calc .seg{display:flex;gap:0;margin-bottom:16px;flex-wrap:wrap}
+  .calc .seg label{flex:1;min-width:120px;margin:0;text-align:center;border:1px solid var(--line);
+    padding:11px 8px;font-size:14px;color:var(--ink);cursor:pointer;background:#fff;user-select:none}
+  .calc .seg label+label{border-left:none}
+  @media(max-width:420px){.calc .seg label+label{border-left:1px solid var(--line)}}
+  .calc .seg input{position:absolute;opacity:0;width:1px;height:1px}
+  .calc .seg label.on{background:var(--acc);border-color:var(--acc);color:#fff}
+  .calc .seg input:focus-visible+span{outline:2px solid var(--acc);outline-offset:4px}
+  .calc .hint{font-size:12px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+  .calc .add{margin-top:16px;width:100%}
+  .calc .err{font-size:13px;color:var(--acc);margin:10px 0 0}
+  .sum{border:1px solid var(--line);background:#fff;display:flex;flex-direction:column}
+  .sum .shead{padding:16px 20px;border-bottom:1px solid var(--line);font-size:12px;
+    text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);font-weight:600}
+  .sum .items{margin:0;padding:0;list-style:none;flex:1}
+  .sum .empty{padding:26px 20px;color:var(--muted);font-size:14px}
+  .sum li{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:start;
+    padding:14px 20px;border-bottom:1px solid var(--line);font-size:14px}
+  .sum li b{display:block;font-weight:700;color:var(--ink);margin-bottom:2px}
+  .sum li span{color:var(--muted);font-size:13px;line-height:1.45}
+  .sum li .pr{font-weight:700;white-space:nowrap}
+  .sum li .del{border:none;background:none;color:var(--muted);font-size:20px;line-height:1;
+    cursor:pointer;padding:0 2px;font-family:inherit}
+  .sum li .del:hover{color:var(--acc)}
+  .sum .tot{padding:18px 20px;border-top:2px solid var(--ink);display:flex;
+    justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .sum .tot span{font-size:13px;color:var(--muted)}
+  .sum .tot b{font-size:26px;white-space:nowrap}
+  .sum .acts{padding:0 20px 20px;display:grid;gap:10px}
+  .sum .acts .btn{text-align:center}
+  .sum .acts .btn[disabled]{cursor:not-allowed}
+  .sum .disc{font-size:12px;color:var(--muted);padding:0 20px 20px;line-height:1.5;margin:0}
 </style>
 </head>
 <body>
@@ -207,6 +252,7 @@
       <a class="btn" href="#contact">Бесплатная консультация</a>
       <a class="btn o" href="tel:+73822577002">Позвонить</a>
     </div>
+    <p class="herolink">…или сначала <a href="#calc">прикиньте стоимость воздуховодов</a> в калькуляторе.</p>
   </div>
   <div class="hero-r">
     <h3>Коротко о нас</h3>
@@ -377,6 +423,79 @@
   <p class="note">Нужного в списке нет? Оставьте заявку — беремся за нестандартные формы и размеры.</p>
 </div></section>
 
+<section id="calc"><div class="wrap">
+  <h2>Калькулятор воздуховодов</h2>
+  <p class="sub">Прикидка стоимости по площади развёртки: задайте размеры — покажем площадь металла, вес и ориентировочную цену. Точную цену называем по чертежу, до начала работ.</p>
+
+  <div class="calc">
+    <form id="calcForm" novalidate>
+      <fieldset>
+        <legend>Изделие</legend>
+
+        <div class="seg" role="radiogroup" aria-label="Тип изделия">
+          <label class="on"><input type="radio" name="kind" value="duct" checked><span>Прямой участок</span></label>
+          <label><input type="radio" name="kind" value="fitting"><span>Фасонная деталь</span></label>
+        </div>
+
+        <div class="seg" role="radiogroup" aria-label="Сечение">
+          <label class="on"><input type="radio" name="shape" value="round" checked><span>Круглое</span></label>
+          <label><input type="radio" name="shape" value="rect"><span>Прямоугольное</span></label>
+        </div>
+
+        <div class="row" id="rowRound">
+          <div><label for="cD">Диаметр, мм</label><input id="cD" name="d" type="number" inputmode="numeric" min="50" max="1250" step="10" value="200"></div>
+        </div>
+
+        <div class="row" id="rowRect" hidden>
+          <div><label for="cA">Ширина A, мм</label><input id="cA" name="a" type="number" inputmode="numeric" min="100" max="1600" step="10" value="400"></div>
+          <div><label for="cB">Высота B, мм</label><input id="cB" name="b" type="number" inputmode="numeric" min="100" max="1600" step="10" value="200"></div>
+        </div>
+
+        <div class="row">
+          <div id="rowLen"><label for="cL">Длина, м</label><input id="cL" name="len" type="number" inputmode="decimal" min="0.1" max="200" step="0.1" value="10"></div>
+          <div><label for="cQ">Количество, шт</label><input id="cQ" name="qty" type="number" inputmode="numeric" min="1" max="999" step="1" value="1"></div>
+        </div>
+
+        <div class="row">
+          <div><label for="cM">Материал</label>
+            <select id="cM" name="material">
+              <option value="zinc">Оцинкованная сталь</option>
+              <option value="inox">Нержавеющая сталь</option>
+              <option value="black">Чёрный металл</option>
+            </select>
+          </div>
+          <div><label for="cT">Толщина металла</label>
+            <select id="cT" name="thk">
+              <option value="auto">Подобрать по размеру</option>
+              <option value="0.5">0,5 мм</option>
+              <option value="0.6">0,6 мм</option>
+              <option value="0.7">0,7 мм</option>
+              <option value="0.9">0,9 мм</option>
+              <option value="1">1,0 мм</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="hint" id="calcHint"></p>
+        <p class="err" id="calcErr" role="alert" hidden></p>
+        <button class="btn add" type="submit">Добавить в расчёт</button>
+      </fieldset>
+    </form>
+
+    <div class="sum">
+      <div class="shead">Ваш расчёт</div>
+      <ul class="items" id="calcItems"></ul>
+      <p class="empty" id="calcEmpty">Пока пусто. Задайте размеры слева и нажмите «Добавить в расчёт» — позиций можно добавить сколько нужно.</p>
+      <div class="tot"><span id="calcMeta">Ориентировочно</span><b id="calcTotal">0 ₽</b></div>
+      <div class="acts">
+        <button class="btn" type="button" id="calcSend" disabled>Отправить расчёт заявкой</button>
+        <button class="btn o" type="button" id="calcClear" disabled>Очистить</button>
+      </div>
+      <p class="disc">Расчёт ориентировочный и не является офертой: цена зависит от толщины и марки металла, объёма партии и сложности деталей. Монтаж, комплектующие и доставка считаются отдельно.</p>
+    </div>
+  </div>
+</div></section>
+
 <section class="alt" id="sectors"><div class="wrap">
   <h2>С кем работаем</h2>
   <p class="sub">Отгружаем и монтажным организациям, и частным заказчикам — от одной детали до партии на объект.</p>
@@ -457,6 +576,233 @@
       bar.classList.toggle('hide', entries[0].isIntersecting);
     }, { threshold: 0.25 }).observe(contact);
   })();
+
+  // ---- Калькулятор воздуховодов ----
+  //
+  // Считает площадь развёртки металла (это геометрия, она точная) и умножает
+  // её на тариф. ПОДТВЕРДИТЬ ПЕРЕД ЗАПУСКОМ: все цифры в блоке ТАРИФЫ ниже —
+  // ориентировочные, их нужно заменить на реальные расценки цеха.
+  (function () {
+    var form = document.getElementById('calcForm');
+    if (!form) return;
+
+    // ------------------------- ТАРИФЫ -------------------------
+
+    // Цена за 1 м² развёртки оцинкованной стали, ₽. Ключ — толщина металла, мм.
+    var PRICE_M2 = { 0.5: 640, 0.6: 720, 0.7: 840, 0.9: 1030, 1: 1120 };
+
+    // Множитель к цене оцинковки для остальных материалов.
+    var MATERIAL = {
+      zinc:  { name: 'оцинковка',   k: 1    },
+      inox:  { name: 'нержавейка',  k: 3.3  },
+      black: { name: 'чёрный металл', k: 0.9 }
+    };
+
+    // Фасонная деталь при той же площади дороже прямого участка: раскрой,
+    // сварка/фальцовка, больше отходов.
+    var FITTING_K = 1.8;
+
+    // Запас металла на фальцы и нахлёсты.
+    var FOLD_K = 1.08;
+
+    // Минимальная стоимость одного изделия, ₽.
+    var MIN_ITEM = 450;
+
+    // ----------------------------------------------------------
+
+    var STEEL = 7.85;        // кг на 1 м² при толщине 1 мм
+    var items = [];
+
+    var elItems = document.getElementById('calcItems');
+    var elEmpty = document.getElementById('calcEmpty');
+    var elTotal = document.getElementById('calcTotal');
+    var elHint  = document.getElementById('calcHint');
+    var elErr   = document.getElementById('calcErr');
+    var btnSend = document.getElementById('calcSend');
+    var btnClear = document.getElementById('calcClear');
+    var rowRound = document.getElementById('rowRound');
+    var rowRect  = document.getElementById('rowRect');
+    var rowLen   = document.getElementById('rowLen');
+
+    function num(n, digits) {
+      return n.toLocaleString('ru-RU', { minimumFractionDigits: digits || 0, maximumFractionDigits: digits || 0 });
+    }
+    function rub(n) { return num(n) + ' ₽'; }
+    // «10 м» вместо «10,0 м», но «2,5 м» остаётся как есть
+    function tidy(n) { return num(n, n % 1 ? 1 : 0); }
+    function val(name) { return form.elements[name].value; }
+    function checked(name) { return form.querySelector('[name=' + name + ']:checked').value; }
+
+    // Толщина по СНиП 2.04.05 / СП 60.13330, если заказчик не выбрал свою.
+    function autoThk(shape, size) {
+      if (shape === 'round') {
+        if (size <= 200) return 0.5;
+        if (size <= 450) return 0.6;
+        if (size <= 800) return 0.7;
+        return 1;
+      }
+      if (size <= 250) return 0.5;
+      if (size <= 1000) return 0.7;
+      return 0.9;
+    }
+
+    // Периметр сечения в метрах.
+    function perimeter(shape, d, a, b) {
+      return shape === 'round' ? Math.PI * d / 1000 : 2 * (a + b) / 1000;
+    }
+
+    function collect() {
+      var kind  = checked('kind');
+      var shape = checked('shape');
+      var d = parseFloat(val('d')) || 0;
+      var a = parseFloat(val('a')) || 0;
+      var b = parseFloat(val('b')) || 0;
+      var qty = Math.round(parseFloat(val('qty')) || 0);
+      var size = shape === 'round' ? d : Math.max(a, b);
+
+      if (shape === 'round' && (d < 50 || d > 1250)) return { error: 'Диаметр — от 50 до 1250 мм.' };
+      if (shape === 'rect' && (a < 100 || b < 100 || a > 1600 || b > 1600)) return { error: 'Стороны — от 100 до 1600 мм.' };
+      if (qty < 1) return { error: 'Укажите количество.' };
+
+      // У фасонной детали длины нет — берём приведённую длину развёртки
+      // порядка полутора габаритов: так считают отвод, переход, тройник, врезку.
+      var len;
+      if (kind === 'fitting') {
+        len = 1.5 * size / 1000;
+      } else {
+        len = parseFloat(val('len')) || 0;
+        if (len < 0.1 || len > 200) return { error: 'Длина — от 0,1 до 200 м.' };
+      }
+
+      var thk = val('thk') === 'auto' ? autoThk(shape, size) : parseFloat(val('thk'));
+      var mat = MATERIAL[val('material')];
+
+      var area = perimeter(shape, d, a, b) * len * FOLD_K;       // м² на одно изделие
+      var mass = area * thk * STEEL;                              // кг на одно изделие
+      var one  = area * PRICE_M2[thk] * mat.k * (kind === 'fitting' ? FITTING_K : 1);
+      one = Math.max(one, MIN_ITEM);
+
+      var size_s = shape === 'round' ? 'Ø' + num(d) : num(a) + '×' + num(b);
+      var title = kind === 'fitting'
+        ? 'Фасонная деталь ' + (shape === 'round' ? 'круглая ' : 'прямоугольная ') + size_s
+        : 'Воздуховод ' + (shape === 'round' ? 'круглый ' : 'прямоугольный ') + size_s;
+      var about = mat.name + ' ' + num(thk, 1) + ' мм'
+        + (kind === 'fitting' ? '' : ', длина ' + tidy(len) + ' м')
+        + ', ' + num(qty) + ' шт';
+
+      return {
+        title: title,
+        about: about,
+        area: area * qty,
+        mass: mass * qty,
+        price: Math.round(one * qty / 10) * 10
+      };
+    }
+
+    function say(text) {
+      elErr.textContent = text || '';
+      elErr.hidden = !text;
+    }
+
+    // Живая подсказка: что получится, ещё до нажатия кнопки.
+    function preview() {
+      var r = collect();
+      if (r.error) { elHint.textContent = ''; return; }
+      say(''); // размеры поправили — старая ошибка больше не про них
+      elHint.textContent = 'Площадь развёртки ' + num(r.area, 1) + ' м², вес металла ≈ '
+        + num(r.mass, 1) + ' кг, ориентировочно ' + rub(r.price) + '.';
+    }
+
+    function render() {
+      elItems.innerHTML = '';
+      var total = 0, area = 0, mass = 0;
+
+      items.forEach(function (it, i) {
+        total += it.price; area += it.area; mass += it.mass;
+        var li = document.createElement('li');
+
+        var text = document.createElement('div');
+        var b = document.createElement('b');
+        b.textContent = it.title;
+        var s = document.createElement('span');
+        s.textContent = it.about + ' · ' + num(it.area, 1) + ' м² · ' + num(it.mass, 1) + ' кг';
+        text.appendChild(b);
+        text.appendChild(s);
+
+        var price = document.createElement('div');
+        price.className = 'pr';
+        price.textContent = rub(it.price);
+
+        var del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'del';
+        del.textContent = '×';
+        del.setAttribute('aria-label', 'Убрать позицию: ' + it.title);
+        del.addEventListener('click', function () { items.splice(i, 1); render(); });
+
+        li.appendChild(text);
+        li.appendChild(price);
+        li.appendChild(del);
+        elItems.appendChild(li);
+      });
+
+      elEmpty.hidden = items.length > 0;
+      elTotal.textContent = items.length ? 'от ' + rub(total) : '0 ₽';
+      btnSend.disabled = btnClear.disabled = items.length === 0;
+
+      document.getElementById('calcMeta').textContent = items.length
+        ? num(area, 1) + ' м² металла, ≈ ' + num(mass) + ' кг'
+        : 'Ориентировочно';
+    }
+
+    // Показываем только те поля, которые нужны выбранному типу изделия.
+    function syncFields() {
+      var round = checked('shape') === 'round';
+      rowRound.hidden = !round;
+      rowRect.hidden = round;
+      rowLen.hidden = checked('kind') === 'fitting';
+      form.querySelectorAll('.seg label').forEach(function (l) {
+        l.classList.toggle('on', l.querySelector('input').checked);
+      });
+      preview();
+    }
+
+    form.addEventListener('change', syncFields);
+    form.addEventListener('input', preview);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var r = collect();
+      if (r.error) { say(r.error); return; }
+      say('');
+      items.push(r);
+      render();
+    });
+
+    btnClear.addEventListener('click', function () { items = []; render(); });
+
+    // Расчёт уезжает в форму заявки — человеку не нужно переписывать размеры.
+    btnSend.addEventListener('click', function () {
+      var lead = document.getElementById('leadForm');
+      var lines = items.map(function (it) {
+        return '— ' + it.title + ', ' + it.about + ' (' + num(it.area, 1) + ' м², ' + rub(it.price) + ')';
+      });
+      var total = items.reduce(function (s, it) { return s + it.price; }, 0);
+      lines.push('Итого по калькулятору: от ' + rub(total));
+
+      var box = lead.elements.comment;
+      var was = box.value.trim();
+      box.value = (was ? was + '\n\n' : '') + 'Расчёт с сайта:\n' + lines.join('\n');
+      if (!lead.elements.service.value) lead.elements.service.value = 'Вентиляционные изделия';
+
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function () { lead.elements.name.focus({ preventScroll: true }); }, 500);
+    });
+
+    syncFields();
+    render();
+  })();
+
   // ---- Отправка заявки ----
   // На боевом хостинге заявка уходит в send.php (письмо на почту).
   // На GitHub Pages PHP не выполняется, поэтому там форма работает в демо-режиме.
