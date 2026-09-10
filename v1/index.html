@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СК Идеал — вариант 1 (тёмный бенто)</title>
+<meta name="description" content="СК Идеал — строительные работы в Томске и Томской области. Вариант вёрстки 1.">
+<style>
+  :root{--y:#ffd23f;--bg:#0d1117;--panel:#161c24;--line:#242d38;--muted:#8b9bad}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:#eef3f8;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+  a{color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 16px}
+  .switch{background:#000;font-size:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .switch .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .switch a{color:var(--muted);text-decoration:none}
+  .switch a:hover,.switch a.on{color:var(--y)}
+  header{padding:20px 0;border-bottom:1px solid var(--line)}
+  .hrow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .logo{font-weight:800;font-size:20px;letter-spacing:2px}
+  .logo b{color:var(--y)}
+  .tel{font-weight:700;font-size:17px;text-decoration:none;white-space:nowrap}
+  .tel small{display:block;font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.5px}
+  h1{font-size:clamp(30px,7vw,64px);line-height:1.03;margin:44px 0 18px;letter-spacing:-1px;text-transform:uppercase}
+  h1 b{color:var(--y)}
+  .lead{color:var(--muted);max-width:560px;font-size:17px;margin:0 0 30px}
+  .bento{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-bottom:60px}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .tile.big{grid-column:span 2}
+  @media(max-width:560px){.tile.big{grid-column:span 1}}
+  .tile.hi{background:var(--y);color:#0d1117;border-color:var(--y)}
+  .tile h3{margin:0 0 8px;font-size:17px}
+  .tile p{margin:0 0 14px;font-size:14px;color:var(--muted)}
+  .tile.hi p{color:#4a3d00}
+  .tile .from{font-size:13px;border-top:1px solid var(--line);padding-top:12px;font-weight:700}
+  .tile.hi .from{border-color:rgba(0,0,0,.2)}
+  .tile .from span{color:var(--y);font-size:17px}
+  .tile.hi .from span{color:#0d1117}
+  .num{font-size:clamp(28px,6vw,44px);font-weight:800;color:var(--y);line-height:1}
+  .num+span{font-size:13px;color:var(--muted)}
+  .tile.hi .num,.tile.hi .num+span{color:#0d1117}
+  h2{font-size:clamp(20px,4.5vw,28px);margin:0 0 6px;text-transform:uppercase;letter-spacing:.5px}
+  .sub{color:var(--muted);margin:0 0 26px;font-size:15px}
+  section{padding:46px 0;border-top:1px solid var(--line)}
+  .rows{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .row{background:var(--panel);display:flex;justify-content:space-between;gap:16px;padding:14px 18px;font-size:15px;flex-wrap:wrap}
+  .row b{color:var(--y);white-space:nowrap}
+  .row i{font-style:normal;color:var(--muted);font-size:13px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none;margin:0}
+  .chips li{border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:14px;color:var(--muted)}
+  .steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));counter-reset:s}
+  .st{border-top:2px solid var(--y);padding-top:14px}
+  .st::before{counter-increment:s;content:"0" counter(s);display:block;color:var(--y);font-weight:800;font-size:13px;margin-bottom:6px}
+  .st h4{margin:0 0 6px;font-size:15px}
+  .st p{margin:0;font-size:14px;color:var(--muted)}
+  .revs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .rev{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;font-size:14px}
+  .rev p{margin:0 0 12px;color:#c9d6e3}
+  .rev span{color:var(--muted);font-size:13px}
+  .rev span b{display:block;color:#fff}
+  form{display:grid;gap:10px;max-width:440px}
+  input,select,textarea{width:100%;padding:14px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:#fff;font:inherit;font-size:15px}
+  input::placeholder,textarea::placeholder{color:#6d7d90}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--y)}
+  textarea{min-height:88px;resize:vertical}
+  button{background:var(--y);color:#0d1117;border:none;border-radius:10px;padding:15px;font-size:16px;font-weight:800;cursor:pointer}
+  .cgrid{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cinfo div{margin-bottom:14px;font-size:15px}
+  .cinfo b{display:block;font-size:12px;color:var(--muted);font-weight:400;text-transform:uppercase;letter-spacing:.6px}
+  .cinfo a{color:var(--y);text-decoration:none}
+  footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:13px}
+  .ok{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);align-items:center;justify-content:center;padding:20px;z-index:9}
+  .ok.open{display:flex}
+  .ok div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;max-width:340px;text-align:center}
+  .ok h3{margin:0 0 8px}.ok p{color:var(--muted);font-size:14px;margin:0 0 18px}
+</style>
+</head>
+<body>
+
+<div class="switch"><div class="wrap">
+  <span style="color:#4a5a6c">Варианты вёрстки:</span>
+  <a href="../">основной</a><a class="on" href="../v1/">v1</a><a href="../v2/">v2</a><a href="../v3/">v3</a><a href="../v4/">v4</a><a href="../v5/">v5</a>
+</div></div>
+
+<header><div class="wrap hrow">
+  <div class="logo">СК <b>ИДЕАЛ</b></div>
+  <a class="tel" href="tel:+79138521610">+7 (913) 852-16-10<small>Томск и область • Пн–Сб 9:00–19:00</small></a>
+</div></header>
+
+<div class="wrap">
+  <h1>Строим<br>и ремонтируем<br><b>под ключ</b></h1>
+  <p class="lead">Полный цикл строительных работ в Томске и Томской области: фундаменты, коробка, кровля, отделка и инженерные сети. Договор, фиксированная смета, гарантия 5 лет.</p>
+  <div class="bento">
+    <div class="tile hi"><div class="num">12</div><span>лет на рынке Томска</span></div>
+    <div class="tile"><div class="num">380+</div><span>сданных объектов</span></div>
+    <div class="tile"><div class="num">5 лет</div><span>гарантия на работы</span></div>
+    <div class="tile"><div class="num">0 ₽</div><span>выезд замерщика по области</span></div>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <h2>Услуги</h2>
+  <p class="sub">Можно заказать отдельный этап или дом под ключ.</p>
+  <div class="bento" style="margin-bottom:0">
+    <div class="tile big"><h3>Дома и коттеджи под ключ</h3><p>Каркасные, из бруса, газобетона и кирпича. Проект, согласование, коробка, отделка и сдача с ключами.</p><div class="from">от <span>28 000 ₽</span> / м²</div></div>
+    <div class="tile"><h3>Фундаменты</h3><p>Лента, плита, сваи. Расчёт по типу грунта и глубине промерзания.</p><div class="from">от <span>4 500 ₽</span> / м²</div></div>
+    <div class="tile"><h3>Кровля и фасады</h3><p>Металлочерепица, фальц, мягкая кровля, вентфасад, сайдинг.</p><div class="from">от <span>1 200 ₽</span> / м²</div></div>
+    <div class="tile"><h3>Ремонт и отделка</h3><p>Квартиры, офисы, торговые помещения. Черновая и чистовая.</p><div class="from">от <span>3 900 ₽</span> / м²</div></div>
+    <div class="tile"><h3>Инженерные сети</h3><p>Отопление, вода, скважины, септики, электрика и щиты.</p><div class="from">от <span>65 000 ₽</span> / объект</div></div>
+    <div class="tile"><h3>Ангары и хозпостройки</h3><p>Бани, гаражи, навесы, быстровозводимые ангары из ЛСТК.</p><div class="from">от <span>9 800 ₽</span> / м²</div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Как работаем</h2>
+  <p class="sub">Прозрачная схема: вы всегда знаете, на каком этапе объект и сколько он стоит.</p>
+  <div class="steps">
+    <div class="st"><h4>Заявка и выезд</h4><p>Бесплатно выезжаем на участок, делаем замеры и оценку грунта.</p></div>
+    <div class="st"><h4>Смета и договор</h4><p>Фиксируем объём, материалы, сроки и цену. Смета не меняется без вашего согласия.</p></div>
+    <div class="st"><h4>Стройка</h4><p>Своя бригада и техника, еженедельный фотоотчёт, приёмка каждого этапа.</p></div>
+    <div class="st"><h4>Сдача</h4><p>Акт, исполнительная документация и гарантия 5 лет на конструктив.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Цены</h2>
+  <p class="sub">Работа без стоимости материалов, для объектов в радиусе 100 км от Томска.</p>
+  <div class="rows">
+    <div class="row"><span>Свайно-винтовой фундамент <i>свая</i></span><b>от 3 400 ₽</b></div>
+    <div class="row"><span>Монолитная плита <i>м²</i></span><b>от 6 200 ₽</b></div>
+    <div class="row"><span>Кладка газобетона <i>м³</i></span><b>от 3 100 ₽</b></div>
+    <div class="row"><span>Сборка каркаса дома <i>м²</i></span><b>от 5 400 ₽</b></div>
+    <div class="row"><span>Монтаж кровли, металлочерепица <i>м²</i></span><b>от 1 200 ₽</b></div>
+    <div class="row"><span>Утепление фасада + сайдинг <i>м²</i></span><b>от 1 550 ₽</b></div>
+    <div class="row"><span>Черновая отделка квартиры <i>м²</i></span><b>от 3 900 ₽</b></div>
+    <div class="row"><span>Ремонт под ключ <i>м²</i></span><b>от 8 700 ₽</b></div>
+    <div class="row"><span>Отопление и водоснабжение <i>точка</i></span><b>от 2 800 ₽</b></div>
+    <div class="row"><span>Электромонтаж со щитом <i>точка</i></span><b>от 1 100 ₽</b></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>География</h2>
+  <p class="sub">Выезд в пределах 100 км — бесплатно, дальше — по договорённости, включая вахтовые бригады.</p>
+  <ul class="chips">
+    <li>Томск</li><li>Северск</li><li>Томский район</li><li>Асино</li><li>Колпашево</li><li>Стрежевой</li>
+    <li>Кожевниково</li><li>Мельниково</li><li>Богашёво</li><li>Зональная Станция</li><li>Кривошеино</li><li>Парабель</li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Отзывы</h2>
+  <p class="sub">Объекты, сданные за последние сезоны.</p>
+  <div class="revs">
+    <div class="rev"><p>«Построили каркасный дом 120 м² в Богашёво за один сезон. Начали в мае, в октябре заехали. Смета совпала с итоговой суммой.»</p><span><b>Андрей К.</b>дом под ключ, Богашёво</span></div>
+    <div class="rev"><p>«Делали фундамент-плиту под баню в Томском районе. Грунт сложный, посоветовали сваи и сделали расчёт. Зиму отстояло без просадок.»</p><span><b>Марина С.</b>фундамент, Томский район</span></div>
+    <div class="rev"><p>«Ремонт двушки на Каштаке. Работали аккуратно, мусор вывозили сами, каждую неделю фотоотчёт — я был в командировке.»</p><span><b>Дмитрий В.</b>ремонт под ключ, Томск</span></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap cgrid">
+  <div>
+    <h2>Оставьте заявку</h2>
+    <p class="sub">Перезвоним в течение рабочего дня и согласуем бесплатный выезд на объект.</p>
+    <div class="cinfo">
+      <div><b>Телефон</b><a href="tel:+79138521610">+7 (913) 852-16-10</a></div>
+      <div><b>Почта</b><a href="mailto:info@example.ru">info@example.ru</a></div>
+      <div><b>Офис</b>г. Томск, пр. Ленина, 1, офис 000</div>
+    </div>
+  </div>
+  <form onsubmit="return lead(event)">
+    <input type="text" placeholder="Ваше имя" required>
+    <input type="tel" placeholder="Телефон" required>
+    <select><option value="">Что нужно сделать?</option><option>Дом под ключ</option><option>Фундамент</option><option>Кровля и фасад</option><option>Ремонт и отделка</option><option>Инженерные сети</option><option>Другое</option></select>
+    <textarea placeholder="Коротко об объекте: площадь, населённый пункт, сроки"></textarea>
+    <button type="submit">Отправить заявку</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap">© 2026 СК «Идеал» — строительные работы в Томске и Томской области</div></footer>
+
+<div class="ok" id="ok"><div>
+  <h3>Заявка принята 👌</h3>
+  <p>Прораб перезвонит в течение рабочего дня и согласует выезд.</p>
+  <button onclick="document.getElementById('ok').classList.remove('open')">Хорошо</button>
+</div></div>
+
+<script>
+  function lead(e){e.preventDefault();e.target.reset();document.getElementById('ok').classList.add('open');return false}
+</script>
+</body>
+</html>

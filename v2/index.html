@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СК Идеал — вариант 2 (светлый минимализм)</title>
+<meta name="description" content="СК Идеал — строительные работы в Томске и Томской области. Вариант вёрстки 2.">
+<style>
+  :root{--ink:#1b1b19;--muted:#77776f;--line:#e6e4dd;--paper:#faf9f5;--acc:#2f6b4f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  .sans{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .switch{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;padding:10px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+  .switch .wrap{display:flex;gap:14px;flex-wrap:wrap}
+  .switch a{color:var(--muted);text-decoration:none}
+  .switch a:hover,.switch a.on{color:var(--acc);text-decoration:underline}
+  header{padding:28px 0;border-bottom:1px solid var(--line)}
+  .hrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .logo{font-size:22px;letter-spacing:3px;text-transform:uppercase}
+  .logo em{font-style:italic;color:var(--acc)}
+  .tel{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--acc);white-space:nowrap}
+  .hero{padding:70px 0 50px;border-bottom:1px solid var(--line)}
+  h1{font-size:clamp(30px,6vw,52px);font-weight:400;line-height:1.15;margin:0 0 20px;letter-spacing:-.5px}
+  h1 em{font-style:italic;color:var(--acc)}
+  .lead{font-size:18px;color:var(--muted);max-width:600px;margin:0 0 30px}
+  .cta{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;display:inline-block;padding:14px 30px;background:var(--acc);color:#fff;text-decoration:none;border-radius:2px;font-size:15px;font-weight:600}
+  .cta.alt{background:transparent;color:var(--acc);border:1px solid var(--acc);margin-left:8px}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:26px;margin-top:48px}
+  .facts b{display:block;font-size:30px;color:var(--acc);font-weight:400}
+  .facts span{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;color:var(--muted)}
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:clamp(22px,4.5vw,32px);font-weight:400;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 34px;font-size:16px;max-width:600px}
+  .srv{display:grid;gap:0}
+  .srv article{display:grid;grid-template-columns:1fr auto;gap:16px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+  .srv article:last-child{border-bottom:1px solid var(--line)}
+  .srv h3{margin:0 0 6px;font-size:20px;font-weight:400}
+  .srv p{margin:0;font-size:15px;color:var(--muted);max-width:520px}
+  .srv .from{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;color:var(--acc);white-space:nowrap;font-weight:600}
+  @media(max-width:600px){.srv article{grid-template-columns:1fr}}
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:26px}
+  ol.steps li{padding-left:56px;position:relative}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-4px;font-size:32px;color:var(--line);font-style:italic}
+  ol.steps h4{margin:0 0 4px;font-size:18px;font-weight:400}
+  ol.steps p{margin:0;color:var(--muted);font-size:15px}
+  .table-scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px}
+  th,td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600}
+  td:last-child{text-align:right;color:var(--acc);font-weight:600}
+  .note{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;color:var(--muted);margin-top:14px}
+  .geo{columns:3 160px;column-gap:24px;font-size:16px;color:var(--muted);list-style:none;padding:0;margin:0}
+  .geo li{padding:4px 0;break-inside:avoid}
+  .geo li::before{content:"— ";color:var(--acc)}
+  blockquote{margin:0 0 30px;padding-left:22px;border-left:2px solid var(--acc);font-size:17px;font-style:italic;color:#3d3d38}
+  blockquote footer{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-style:normal;font-size:13px;color:var(--muted);margin-top:10px}
+  blockquote footer b{color:var(--ink);font-weight:600}
+  form{display:grid;gap:14px;max-width:460px;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  input,select,textarea{width:100%;padding:12px 0;border:none;border-bottom:1px solid var(--line);background:transparent;font:inherit;font-size:15px;color:var(--ink);border-radius:0}
+  input::placeholder,textarea::placeholder{color:#a8a89f}
+  input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--acc)}
+  textarea{min-height:70px;resize:vertical}
+  button{justify-self:start;margin-top:8px;padding:14px 34px;background:var(--acc);color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;border-radius:2px}
+  .cgrid{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .cinfo{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px}
+  .cinfo div{margin-bottom:16px}
+  .cinfo b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600}
+  .cinfo a{color:var(--acc)}
+  footer.page{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:26px 0;font-size:13px;color:var(--muted)}
+  .ok{display:none;position:fixed;inset:0;background:rgba(27,27,25,.45);align-items:center;justify-content:center;padding:20px;z-index:9}
+  .ok.open{display:flex}
+  .ok>div{background:var(--paper);padding:30px;max-width:340px;text-align:center;border-radius:2px}
+  .ok h3{font-weight:400;margin:0 0 8px}
+  .ok p{color:var(--muted);font-size:15px;margin:0 0 20px}
+  .ok button{width:100%;justify-self:stretch}
+</style>
+</head>
+<body>
+
+<div class="switch"><div class="wrap">
+  <span>Варианты вёрстки:</span>
+  <a href="../">основной</a><a href="../v1/">v1</a><a class="on" href="../v2/">v2</a><a href="../v3/">v3</a><a href="../v4/">v4</a><a href="../v5/">v5</a>
+</div></div>
+
+<header><div class="wrap hrow">
+  <div class="logo">СК <em>Идеал</em></div>
+  <a class="tel" href="tel:+79138521610">+7 (913) 852-16-10</a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <h1>Строительные работы<br>в Томске и области —<br><em>под ключ, по договору</em></h1>
+  <p class="lead">Строим дома и бани, заливаем фундаменты, кроем крыши, делаем отделку и подводим инженерные сети. Работаем с учётом сибирской зимы и сезонного графика.</p>
+  <a class="cta" href="#contact">Рассчитать стоимость</a><a class="cta alt" href="tel:+79138521610">Позвонить</a>
+  <div class="facts">
+    <div><b>12</b><span>лет на рынке Томска</span></div>
+    <div><b>380+</b><span>объектов сдано</span></div>
+    <div><b>5 лет</b><span>гарантия на работы</span></div>
+    <div><b>0 ₽</b><span>выезд замерщика</span></div>
+  </div>
+</div></div>
+
+<section><div class="wrap">
+  <h2>Что мы делаем</h2>
+  <p class="sub">Полный цикл — от геологии участка до сдачи объекта с ключами. Можно заказать как отдельный этап, так и дом под ключ.</p>
+  <div class="srv">
+    <article><div><h3>Дома и коттеджи под ключ</h3><p>Каркасные, из бруса, газобетона и кирпича. Проект, согласование, коробка, отделка и сдача.</p></div><div class="from">от 28 000 ₽ / м²</div></article>
+    <article><div><h3>Фундаменты</h3><p>Ленточный, плита, свайно-винтовой. Расчёт по типу грунта и глубине промерзания в регионе.</p></div><div class="from">от 4 500 ₽ / м²</div></article>
+    <article><div><h3>Кровля и фасады</h3><p>Металлочерепица, фальц, мягкая кровля. Утепление фасада, сайдинг, штукатурка, вентфасад.</p></div><div class="from">от 1 200 ₽ / м²</div></article>
+    <article><div><h3>Ремонт и отделка</h3><p>Квартиры, офисы, торговые помещения. Черновая, чистовая и капитальный ремонт с перепланировкой.</p></div><div class="from">от 3 900 ₽ / м²</div></article>
+    <article><div><h3>Инженерные сети</h3><p>Отопление, водоснабжение, скважины, септики, электрика и щиты. Подключение к сетям.</p></div><div class="from">от 65 000 ₽ / объект</div></article>
+    <article><div><h3>Ангары и хозпостройки</h3><p>Бани, гаражи, навесы, быстровозводимые ангары из ЛСТК для фермерских и складских задач.</p></div><div class="from">от 9 800 ₽ / м²</div></article>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Как проходит работа</h2>
+  <p class="sub">Прозрачная схема: вы всегда знаете, на каком этапе объект и сколько он стоит.</p>
+  <ol class="steps">
+    <li><h4>Заявка и выезд</h4><p>Бесплатно выезжаем на участок в Томске и области, делаем замеры и оценку грунта.</p></li>
+    <li><h4>Смета и договор</h4><p>Фиксируем объём работ, материалы, сроки и цену. Смета не меняется без вашего согласия.</p></li>
+    <li><h4>Стройка</h4><p>Своя бригада и техника. Еженедельный фотоотчёт, приёмка каждого этапа заказчиком.</p></li>
+    <li><h4>Сдача и гарантия</h4><p>Акт, исполнительная документация и гарантия 5 лет на все конструктивные работы.</p></li>
+  </ol>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Ориентировочные цены</h2>
+  <p class="sub">Стоимость зависит от объёма, удалённости объекта и выбранных материалов. Точная цифра — после замера.</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Работа</th><th>Ед.</th><th>Цена от</th></tr></thead>
+    <tbody>
+      <tr><td>Свайно-винтовой фундамент</td><td>свая</td><td>3 400 ₽</td></tr>
+      <tr><td>Монолитная плита</td><td>м²</td><td>6 200 ₽</td></tr>
+      <tr><td>Кладка газобетона</td><td>м³</td><td>3 100 ₽</td></tr>
+      <tr><td>Сборка каркаса дома</td><td>м²</td><td>5 400 ₽</td></tr>
+      <tr><td>Монтаж кровли (металлочерепица)</td><td>м²</td><td>1 200 ₽</td></tr>
+      <tr><td>Утепление фасада + сайдинг</td><td>м²</td><td>1 550 ₽</td></tr>
+      <tr><td>Черновая отделка квартиры</td><td>м²</td><td>3 900 ₽</td></tr>
+      <tr><td>Ремонт под ключ</td><td>м²</td><td>8 700 ₽</td></tr>
+      <tr><td>Разводка отопления и водоснабжения</td><td>точка</td><td>2 800 ₽</td></tr>
+      <tr><td>Электромонтаж со щитом</td><td>точка</td><td>1 100 ₽</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Цены указаны за работу без стоимости материалов и действуют для объектов в радиусе 100 км от Томска.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Где работаем</h2>
+  <p class="sub">Томск, Северск и районы области. Выезд в пределах 100 км — бесплатно, дальше — по договорённости, включая вахтовые бригады.</p>
+  <ul class="geo">
+    <li>Томск</li><li>Северск</li><li>Томский район</li><li>Асино</li><li>Колпашево</li><li>Стрежевой</li>
+    <li>Кожевниково</li><li>Мельниково</li><li>Богашёво</li><li>Зональная Станция</li><li>Кривошеино</li><li>Парабель</li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Отзывы заказчиков</h2>
+  <p class="sub">Несколько объектов, сданных за последние сезоны.</p>
+  <blockquote>Построили каркасный дом 120 м² в Богашёво за один сезон. Начали в мае, в октябре уже заехали. Смета совпала с итоговой суммой, дополнительных счетов не выставляли.
+    <footer><b>Андрей К.</b> — дом под ключ, Богашёво</footer></blockquote>
+  <blockquote>Делали фундамент-плиту под баню в Томском районе. Грунт сложный, посоветовали сваи и сделали расчёт. Зиму отстояло без просадок.
+    <footer><b>Марина С.</b> — фундамент, Томский район</footer></blockquote>
+  <blockquote>Ремонт двухкомнатной квартиры на Каштаке. Работали аккуратно, мусор вывозили сами, каждую неделю присылали фотоотчёт — я был в командировке.
+    <footer><b>Дмитрий В.</b> — ремонт под ключ, Томск</footer></blockquote>
+</div></section>
+
+<section id="contact"><div class="wrap cgrid">
+  <div>
+    <h2>Оставьте заявку</h2>
+    <p class="sub">Перезвоним в течение рабочего дня, ответим на вопросы и согласуем бесплатный выезд на объект.</p>
+    <div class="cinfo">
+      <div><b>Телефон</b><a href="tel:+79138521610">+7 (913) 852-16-10</a></div>
+      <div><b>Почта</b><a href="mailto:info@example.ru">info@example.ru</a></div>
+      <div><b>Офис</b>г. Томск, пр. Ленина, 1, офис 000</div>
+      <div><b>Режим работы</b>Пн–Сб, 9:00–19:00</div>
+    </div>
+  </div>
+  <form onsubmit="return lead(event)">
+    <input type="text" placeholder="Ваше имя" required>
+    <input type="tel" placeholder="Телефон" required>
+    <select><option value="">Что нужно сделать?</option><option>Дом под ключ</option><option>Фундамент</option><option>Кровля и фасад</option><option>Ремонт и отделка</option><option>Инженерные сети</option><option>Другое</option></select>
+    <textarea placeholder="Коротко об объекте: площадь, населённый пункт, сроки"></textarea>
+    <button type="submit">Отправить заявку</button>
+  </form>
+</div></section>
+
+<footer class="page"><div class="wrap">© 2026 СК «Идеал» — строительные работы в Томске и Томской области</div></footer>
+
+<div class="ok" id="ok"><div>
+  <h3>Заявка принята</h3>
+  <p>Спасибо! Прораб перезвонит в течение рабочего дня и согласует выезд на объект.</p>
+  <button onclick="document.getElementById('ok').classList.remove('open')">Хорошо</button>
+</div></div>
+
+<script>
+  function lead(e){e.preventDefault();e.target.reset();document.getElementById('ok').classList.add('open');return false}
+</script>
+</body>
+</html>
