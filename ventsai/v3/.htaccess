@@ -1,0 +1,12 @@
+# Журнал заявок содержит персональные данные — закрываем прямой доступ.
+<FilesMatch "\.(log|md)$">
+  Require all denied
+</FilesMatch>
+
+# Для Apache 2.2
+<IfModule !mod_authz_core.c>
+  <FilesMatch "\.(log|md)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>

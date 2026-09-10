@@ -104,6 +104,9 @@
   input,select,textarea{width:100%;padding:13px;border:1px solid var(--line);font:inherit;font-size:15px;background:#fff;color:var(--ink);border-radius:0}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc)}
   textarea{min-height:84px;resize:vertical}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+  .formmsg{margin:0;font-size:14px;padding:11px 14px;background:#fdecee;color:#8c0d21;border-left:3px solid var(--acc)}
+  button[disabled]{opacity:.6;cursor:progress}
   .agree{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:13px;color:var(--muted);line-height:1.45;cursor:pointer}
   .agree input{width:18px;height:18px;margin:2px 0 0;padding:0;flex:none;accent-color:var(--acc);cursor:pointer}
   .agree a{color:var(--acc)}
@@ -330,16 +333,19 @@
       <div><b>Сайт</b><a href="https://ventsay70.ru/">ventsay70.ru</a></div>
     </div>
   </div>
-  <form onsubmit="return lead(event)">
-    <input type="text" placeholder="Ваше имя" required>
-    <input type="tel" placeholder="Телефон" required>
-    <select><option value="">Что нужно?</option><option>Вентиляционные изделия</option><option>Доборные элементы и кассетный сайдинг</option><option>Водосточные системы</option><option>Плазменный раскрой металла</option><option>Изделия по чертежам</option><option>Монтаж вентиляции</option><option>Товары для сада и огорода</option></select>
-    <textarea placeholder="Что нужно изготовить: изделие, материал, размеры, количество"></textarea>
+  <form id="leadForm" method="post" action="send.php" novalidate>
+    <input type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
+    <input type="tel" name="phone" placeholder="Телефон" autocomplete="tel" inputmode="tel" required>
+    <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+    <input type="hidden" name="ts" value="">
+    <select name="service"><option value="">Что нужно?</option><option>Вентиляционные изделия</option><option>Доборные элементы и кассетный сайдинг</option><option>Водосточные системы</option><option>Плазменный раскрой металла</option><option>Изделия по чертежам</option><option>Монтаж вентиляции</option><option>Товары для сада и огорода</option></select>
+    <textarea name="comment" placeholder="Что нужно изготовить: изделие, материал, размеры, количество"></textarea>
     <label class="agree">
       <input type="checkbox" name="consent" required>
       <span>Я даю согласие на обработку персональных данных и подтверждаю, что ознакомлен с <a href="../privacy/" target="_blank" rel="noopener">Политикой обработки персональных данных</a>.</span>
     </label>
     <button class="btn" type="submit">Отправить заявку</button>
+    <p class="formmsg" id="formmsg" role="alert" hidden></p>
   </form>
 </div></section>
 
@@ -380,7 +386,67 @@
       bar.classList.toggle('hide', entries[0].isIntersecting);
     }, { threshold: 0.25 }).observe(contact);
   })();
-  function lead(e){e.preventDefault();e.target.reset();document.getElementById('ok').classList.add('open');return false}
+  // ---- Отправка заявки ----
+  // На боевом хостинге заявка уходит в send.php (письмо на почту).
+  // На GitHub Pages PHP не выполняется, поэтому там форма работает в демо-режиме.
+  (function () {
+    var form = document.getElementById('leadForm');
+    var msg  = document.getElementById('formmsg');
+    var btn  = form.querySelector('button[type=submit]');
+    var DEMO = /github\.io$/.test(location.hostname) || location.protocol === 'file:';
+
+    form.elements.ts.value = Date.now();
+
+    function say(text) {
+      msg.textContent = text;
+      msg.hidden = !text;
+    }
+
+    function success() {
+      form.reset();
+      form.elements.ts.value = Date.now();
+      say('');
+      document.getElementById('ok').classList.add('open');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      say('');
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (DEMO) {
+        success();
+        return;
+      }
+
+      btn.disabled = true;
+      var label = btn.textContent;
+      btn.textContent = 'Отправляем…';
+
+      fetch(form.action, { method: 'POST', body: new FormData(form) })
+        .then(function (r) {
+          return r.json().catch(function () { return { ok: r.ok }; });
+        })
+        .then(function (data) {
+          if (data && data.ok) {
+            success();
+          } else {
+            say((data && data.error) || 'Не удалось отправить. Позвоните нам: 8 (3822) 577-002');
+          }
+        })
+        .catch(function () {
+          say('Нет связи с сервером. Позвоните нам: 8 (3822) 577-002');
+        })
+        .then(function () {
+          btn.disabled = false;
+          btn.textContent = label;
+        });
+    });
+  })();
 </script>
 </body>
 </html>
