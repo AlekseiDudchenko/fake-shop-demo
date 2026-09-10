@@ -75,3 +75,17 @@ Settings → Pages → Source: `main` / root. Страница будет дос
 номенклатуры с материалами и размерами.
 
 Фотографии лежат в `ventsai/img/` (см. `ventsai/img/README.md`).
+
+### Превью ссылки (Open Graph) — только v3
+
+`ventsai/v3/` отдаёт корректную карточку при вставке ссылки в мессенджеры:
+`og:title`, `og:description`, `og:image` (1200×630, файл `ventsai/v3/og.jpg`),
+`twitter:card`, `canonical` и `theme-color`.
+
+Картинка `og.jpg` собрана скриптом из фото `ventsai/img/work-2.jpg` плюс
+подписи. Пересобрать можно в любой момент — важно сохранить размер 1200×630.
+
+**При переезде на свой домен** обязательно поменяйте абсолютные адреса
+в `og:url`, `og:image`, `og:image:secure_url`, `twitter:image` и `canonical`:
+сейчас там ссылки на GitHub Pages. Относительные пути в этих тегах не работают —
+мессенджеры их не понимают.
