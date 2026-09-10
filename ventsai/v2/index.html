@@ -82,13 +82,20 @@
   .cgrid{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
   .cinfo div{margin-bottom:14px;font-size:15px}
   .cinfo b{display:block;font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.5px}
-  .cinfo a{color:var(--b);text-decoration:none}
+  .cinfo a{display:block;color:var(--b);text-decoration:none}
   footer{background:var(--ink);color:#8a9aab;padding:22px 0;font-size:13px}
   .ok{display:none;position:fixed;inset:0;background:rgba(18,33,47,.55);align-items:center;justify-content:center;padding:20px;z-index:30}
   .ok.open{display:flex}
   .ok>div{background:#fff;border-radius:12px;padding:28px;max-width:340px;text-align:center}
   .ok h3{margin:0 0 8px}.ok p{color:var(--muted);font-size:14px;margin:0 0 18px}
   .ok button{width:100%}
+
+  .gal .gg{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .gal figure{margin:0}
+  .gal figure img,.gal figure .ph{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:10px}
+  .gal figure .ph{display:none;align-items:center;justify-content:center;text-align:center;padding:16px;
+    background:var(--bg);color:var(--muted);font-size:13px}
+  .gal figcaption{font-size:14px;color:var(--muted);padding-top:8px}
 </style>
 </head>
 <body>
@@ -100,13 +107,13 @@
 </div></div>
 
 <div class="topbar"><div class="wrap">
-  <span>Собственный цех в Томске • изготовление от 2 рабочих дней</span>
+  <span>Собственный цех в Томске • воздуховоды от 50 до 1200 мм</span>
   <span>Пн–Пт, 9:00–18:00</span>
 </div></div>
 
 <header><div class="wrap hrow">
   <div class="logo"><div class="mark">В</div><div>ВЕНТ<span>САЙ</span><small>изготовление и монтаж вентиляции</small></div></div>
-  <a class="tel" href="tel:+79138521610">+7 (913) 852-16-10</a>
+  <a class="tel" href="tel:+73822577002">+7 (3822) 57-70-02</a>
   <a class="hbtn" href="#contact">Заказать расчёт</a>
 </div></header>
 
@@ -118,7 +125,7 @@
       <li>Производство воздуховодов на своём оборудовании</li>
       <li>Фиксированная смета в договоре</li>
       <li>Паспорт системы и аэродинамические испытания</li>
-      <li>Гарантия 3 года на монтаж</li>
+      <li>Полный цикл: подбор и поставка оборудования, изготовление, монтаж</li>
     </ul>
   </div>
   <div class="quote">
@@ -135,10 +142,10 @@
 </div></div>
 
 <div class="facts"><div class="wrap">
-  <div><b>15 лет</b><span>на рынке вентиляции</span></div>
-  <div><b>900+</b><span>смонтированных систем</span></div>
-  <div><b>от 2 дней</b><span>срок изготовления</span></div>
-  <div><b>3 года</b><span>гарантия на монтаж</span></div>
+  <div><b>11+ лет</b><span>на рынке вентиляции</span></div>
+  <div><b>50–1200 мм</b><span>размеры воздуховодов</span></div>
+  <div><b>Полный цикл</b><span>от подбора оборудования до монтажа</span></div>
+  <div><b>Свой цех</b><span>производство в Томске</span></div>
 </div></div>
 
 <section id="services"><div class="wrap">
@@ -171,8 +178,8 @@
   <div class="steps">
     <div class="st"><h4>Замер и расчёт</h4><p>Выезд инженера, замеры, расчёт воздухообмена по площади и назначению помещений.</p></div>
     <div class="st"><h4>Проект и смета</h4><p>Схема раскладки, спецификация оборудования, фиксированная смета и сроки в договоре.</p></div>
-    <div class="st"><h4>Изготовление</h4><p>Воздуховоды и фасонина в своём цехе — от 2 рабочих дней с момента согласования.</p></div>
-    <div class="st"><h4>Монтаж и запуск</h4><p>Монтаж, балансировка, аэродинамические испытания, паспорт системы, гарантия 3 года.</p></div>
+    <div class="st"><h4>Изготовление</h4><p>Воздуховоды и фасонные изделия в своём цехе, круглые и прямоугольные, 50–1200 мм.</p></div>
+    <div class="st"><h4>Монтаж и запуск</h4><p>Монтаж, балансировка, аэродинамические испытания и паспорт системы.</p></div>
   </div>
 </div></section>
 
@@ -207,6 +214,43 @@
   </ul>
 </div></section>
 
+<section class="gal" id="works"><div class="wrap">
+  <h2>Наши работы</h2>
+  <p class="sub">Фотографии с наших объектов и из цеха.</p>
+  <div class="gg">
+      <figure>
+        <img src="../img/work-1.jpg" alt="Цех: изготовление воздуховодов" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph"><span>Фото: цех: изготовление воздуховодов</span></div>
+        <figcaption>Цех: изготовление воздуховодов</figcaption>
+      </figure>
+      <figure>
+        <img src="../img/work-2.jpg" alt="Приточно-вытяжная система" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph"><span>Фото: приточно-вытяжная система</span></div>
+        <figcaption>Приточно-вытяжная система</figcaption>
+      </figure>
+      <figure>
+        <img src="../img/work-3.jpg" alt="Кухонный зонт из нержавейки" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph"><span>Фото: кухонный зонт из нержавейки</span></div>
+        <figcaption>Кухонный зонт из нержавейки</figcaption>
+      </figure>
+      <figure>
+        <img src="../img/work-4.jpg" alt="Промышленный объект" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph"><span>Фото: промышленный объект</span></div>
+        <figcaption>Промышленный объект</figcaption>
+      </figure>
+      <figure>
+        <img src="../img/work-5.jpg" alt="Фасонные изделия" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph"><span>Фото: фасонные изделия</span></div>
+        <figcaption>Фасонные изделия</figcaption>
+      </figure>
+      <figure>
+        <img src="../img/work-6.jpg" alt="Монтаж на объекте" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph"><span>Фото: монтаж на объекте</span></div>
+        <figcaption>Монтаж на объекте</figcaption>
+      </figure>
+  </div>
+</div></section>
+
 <section class="alt" id="reviews"><div class="wrap">
   <h2>Отзывы заказчиков</h2>
   <p class="sub">Несколько объектов последних сезонов.</p>
@@ -222,9 +266,9 @@
     <h2>Контакты</h2>
     <p class="sub">Перезвоним в рабочее время, ответим на вопросы и согласуем выезд инженера на объект.</p>
     <div class="cinfo">
-      <div><b>Телефон</b><a href="tel:+79138521610">+7 (913) 852-16-10</a></div>
-      <div><b>Почта</b><a href="mailto:info@example.ru">info@example.ru</a></div>
-      <div><b>Цех и офис</b>г. Томск, ул. Промышленная, 1</div>
+      <div><b>Телефоны</b><a href="tel:+73822577002">+7 (3822) 57-70-02</a><a href="tel:+73822902732">+7 (3822) 90-27-32</a><a href="tel:+73822590420">+7 (3822) 59-04-20</a></div>
+      <div><b>Почта</b><a href="mailto:ventsay@mail.ru">ventsay@mail.ru</a></div>
+      <div><b>Цех и офис</b>г. Томск, ул. Профсоюзная, 28/1, стр. 3</div>
       <div><b>Режим работы</b>Пн–Пт, 9:00–18:00</div>
     </div>
   </div>
