@@ -1,22 +1,33 @@
-# Spaß-Onlineshop (Demo für Video)
+# СибСтрой — лендинг строительных работ (Томск и область)
 
-Eine statische HTML-Seite „Produktkarte" — für die Aufnahme eines lustigen Instagram-Videos.
-Keine Logik, kein Backend — nur eine schöne Seite, die man im Browser öffnen und aufnehmen kann.
+Статическая одностраничная посадочная страница строительной компании: услуги,
+этапы работ, цены, география выезда, отзывы и форма заявки.
+Один файл `index.html`, без сборки и бэкенда.
 
-## So passt du sie an
+## Как открыть
 
-1. **Produktfoto** — Datei neben `index.html` ablegen und `product.jpg` nennen
-   (anderer Name/Format? Dann `src="product.jpg"` im `<img>`-Tag in `index.html` anpassen).
-2. **Produktname** — Text `Coole Kaffeetasse` ersetzen (Tag `<h1 class="title">`).
-3. **Preis** — `14,99 €` (alt, durchgestrichen) und `6,99 €` (neu) im `.price-row`-Block ersetzen.
-4. **Beschreibung** — Text innerhalb von `<p class="desc">` ersetzen.
+Дважды кликнуть по `index.html` — откроется в браузере.
 
-## Öffnen
+## Как адаптировать под себя
 
-Einfach doppelt auf `index.html` klicken — öffnet sich im Browser. Kein Build/Server nötig.
+Всё правится прямо в `index.html`:
 
-## Veröffentlichen (optional)
+1. **Название компании** — блок `<div class="logo">` в шапке и текст в `<footer>`.
+2. **Телефон и адрес** — `+7 (3822) 00-00-00`, `info@example.ru` и адрес офиса
+   в шапке и в секции `#contact` (не забыть про `href="tel:..."`).
+3. **Услуги и цены «от»** — карточки в секции `#services`.
+4. **Прайс** — таблица `table.prices` в секции `#prices`.
+5. **География** — список `.geo-list` в секции `#geo`.
+6. **Отзывы** — блоки `.review` в секции `#reviews`.
+7. **Цвета** — переменные `--accent`, `--dark` в `:root` в начале `<style>`.
 
-Für einen Link für Stories: GitHub Pages in den Repo-Einstellungen aktivieren
-(Settings → Pages → Source: `main` / root). Die Seite ist dann erreichbar unter
+## Форма заявки
+
+Форма демонстрационная: данные никуда не отправляются, показывается только
+модальное окно с подтверждением (функция `submitLead` внизу файла).
+Для реальной отправки замените её на отправку в CRM, на почту или в Telegram-бота.
+
+## Публикация (по желанию)
+
+Settings → Pages → Source: `main` / root. Страница будет доступна по адресу
 `https://<username>.github.io/fake-shop-demo/`.
