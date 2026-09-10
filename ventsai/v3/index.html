@@ -104,6 +104,10 @@
   input,select,textarea{width:100%;padding:13px;border:1px solid var(--line);font:inherit;font-size:15px;background:#fff;color:var(--ink);border-radius:0}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc)}
   textarea{min-height:84px;resize:vertical}
+  .agree{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:13px;color:var(--muted);line-height:1.45;cursor:pointer}
+  .agree input{width:18px;height:18px;margin:2px 0 0;padding:0;flex:none;accent-color:var(--acc);cursor:pointer}
+  .agree a{color:var(--acc)}
+  .agree input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
   .cinfo div{margin-bottom:14px;font-size:15px}
   .cinfo b{display:block;font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.8px}
   .cinfo a{display:block;color:var(--acc);text-decoration:none}
@@ -315,11 +319,18 @@
     <input type="tel" placeholder="Телефон" required>
     <select><option value="">Что нужно?</option><option>Вентиляционные изделия</option><option>Доборные элементы и кассетный сайдинг</option><option>Водосточные системы</option><option>Плазменный раскрой металла</option><option>Изделия по чертежам</option><option>Монтаж вентиляции</option><option>Товары для сада и огорода</option></select>
     <textarea placeholder="Что нужно изготовить: изделие, материал, размеры, количество"></textarea>
+    <label class="agree">
+      <input type="checkbox" name="consent" required>
+      <span>Я даю согласие на обработку персональных данных и подтверждаю, что ознакомлен с <a href="../privacy/" target="_blank" rel="noopener">Политикой обработки персональных данных</a>.</span>
+    </label>
     <button class="btn" type="submit">Отправить заявку</button>
   </form>
 </div></section>
 
-<footer><div class="wrap">© 2026 ООО «ВентСай-Томск» — изделия для фасада, кровли и вентиляции</div></footer>
+<footer><div class="wrap">
+  © <span id="year">2026</span> ООО «ВентСай-Томск» — изделия для фасада, кровли и вентиляции
+  &nbsp;•&nbsp; <a href="../privacy/" style="color:var(--acc)">Политика обработки персональных данных</a>
+</div></footer>
 
 <div class="ok" id="ok"><div>
   <h3>Заявка принята 👌</h3>
@@ -334,6 +345,7 @@
     el.classList.add('on');
     document.querySelectorAll('.pane')[i].classList.add('on');
   }
+  document.getElementById('year').textContent = new Date().getFullYear();
   function lead(e){e.preventDefault();e.target.reset();document.getElementById('ok').classList.add('open');return false}
 </script>
 </body>
