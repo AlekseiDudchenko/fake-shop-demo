@@ -184,6 +184,12 @@
   .gal .gg{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
   .gal figure{margin:0}
   .gal figure img,.gal figure .ph{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:0}
+  /* Раскладка изделий — кадр 1.9:1. В плитке 4:3 её обрезало бы по краям,
+     поэтому она занимает всю строку сетки и держит своё соотношение. */
+  .gal figure.wide{grid-column:1/-1}
+  /* height:auto обязателен: у картинки проставлены width/height, и без него
+     атрибут height выигрывает у aspect-ratio, кадр сжимается и обрезается. */
+  .gal figure.wide img,.gal figure.wide .ph{aspect-ratio:1733/908;height:auto}
   .gal figure .ph{display:none;align-items:center;justify-content:center;text-align:center;padding:16px;
     background:var(--bg);color:var(--muted);font-size:13px}
   .gal figcaption{font-size:14px;color:var(--muted);padding-top:10px;line-height:1.5}
@@ -334,17 +340,17 @@
 
 <section class="alt gal" id="works"><div class="wrap">
   <h2>Наши работы</h2>
-  <p class="sub">Фотографии с производства и с объектов заказчиков.</p>
+  <p class="sub">Изделия из нашего цеха и фотографии с производства и с объектов заказчиков.</p>
   <div class="gg">
+      <figure class="wide">
+        <img src="../img/nomenclature.jpg" width="1733" height="908" alt="Изделия собственного производства: переход прямоугольный-круглый, отводы, тройники, крестовина, зонт, хомут, дроссель-клапан, прямоугольные воздуховоды и короба" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ph"><span>Изделия собственного производства</span></div>
+        <figcaption><b>Изделия собственного производства</b>Переходы, отводы, тройники и крестовины, зонты, хомуты, дроссель-клапаны, прямоугольные воздуховоды и короба — типовые позиции, которые делаем в цехе.</figcaption>
+      </figure>
       <figure>
         <img src="../img/work-1.jpg" alt="Плазменный раскрой металла" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="ph"><span>Плазменный раскрой металла</span></div>
         <figcaption><b>Плазменный раскрой металла</b>Режем лист по файлу заказчика: контур, отверстия, партия одинаковых деталей.</figcaption>
-      </figure>
-      <figure>
-        <img src="../img/work-2.jpg" alt="Фасонные детали" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="ph"><span>Фасонные детали</span></div>
-        <figcaption><b>Фасонные детали</b>Отводы, переходы, тройники и врезки — под размеры конкретной системы.</figcaption>
       </figure>
       <figure>
         <img src="../img/work-3.jpg" alt="Цех металлоизделий" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
